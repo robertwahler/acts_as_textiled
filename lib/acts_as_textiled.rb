@@ -33,7 +33,7 @@ module Err
                     CGI.escapeHTML(match)
                   end
 
-                  str = auto_link(str, :all) do |txt|
+                  str = auto_link(str, :link) do |txt|
                     txt.size < 55 ? txt : truncate(txt, :length => 50)
                   end
 
