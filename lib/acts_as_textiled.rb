@@ -1,4 +1,4 @@
-module Err 
+module Err
   module Acts #:nodoc: all
     module Textiled
       include ActionView::Helpers::TagHelper
@@ -60,7 +60,7 @@ module Err
         end
 
         def textiled_attributes
-          Array(@textiled_attributes) 
+          Array(@textiled_attributes)
         end
       end
 
@@ -95,7 +95,7 @@ module Err
 
       private
         def strip_redcloth_html(html)
-          returning html.dup.gsub(html_regexp, '') do |h|
+          html.dup.gsub(html_regexp, '').tap do |h|
             redcloth_glyphs.each do |(entity, char)|
               sub = [ :gsub!, entity, char ]
               @textiled_unicode ? h.chars.send(*sub) : h.send(*sub)
@@ -105,18 +105,18 @@ module Err
 
         def redcloth_glyphs
            [[ '&#x000A;', "\n"],
-            [ '&#8217;', "'" ], 
+            [ '&#8217;', "'" ],
             [ '&#8216;', "'" ],
-            [ '&lt;', '<' ], 
-            [ '&gt;', '>' ], 
+            [ '&lt;', '<' ],
+            [ '&gt;', '>' ],
             [ '&#8221;', '"' ],
-            [ '&#8220;', '"' ],            
+            [ '&#8220;', '"' ],
             [ '&#8230;', '...' ],
-            [ '\1&#8212;', '--' ], 
-            [ ' &rarr; ', '->' ], 
-            [ ' &#8211; ', '-' ], 
-            [ '&#215;', 'x' ], 
-            [ '&#8482;', '(TM)' ], 
+            [ '\1&#8212;', '--' ],
+            [ ' &rarr; ', '->' ],
+            [ ' &#8211; ', '-' ],
+            [ '&#215;', 'x' ],
+            [ '&#8482;', '(TM)' ],
             [ '&#174;', '(R)' ],
             [ '&#169;', '(C)' ]]
         end
